@@ -22,7 +22,7 @@ main(Args) ->
     FullPath = unicode:characters_to_list([SrcPath, "/", FileName]),
     {ok, {application, AppName, List}} = file:script(FullPath),
     Vsn = proplists:get_value(vsn, List),
-    Doc = prettypr:above(header(Args), beam2nix:new(AppName, Vsn, "./.")),
+    Doc = prettypr:above(header(Args), beam2nix:new(AppName, Vsn, "./.", [])),
     io:format("~s", [prettypr:format(Doc)]),
     erlang:halt(0).
 
