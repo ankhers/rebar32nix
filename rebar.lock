@@ -1,4 +1,1 @@
-[{<<"beam2nix">>,
-  {git,"https://github.com/ankhers/beam2nix.git",
-       {ref,"a972791c345dae7a2ac823dad118d42075a47cb8"}},
-  0}].
+[].
