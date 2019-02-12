@@ -14,13 +14,24 @@ main(Args) ->
     {ok, {application, AppName, List}} = app_src(),
     Deps = get_deps_list(),
     Vsn = proplists:get_value(vsn, List),
-    Doc = prettypr:above(header(Args), beam2nix:new(AppName, Vsn, "./.", Deps)),
+    ReleaseType = release_type(Args),
+    Doc = prettypr:above(header(Args), beam2nix:new(AppName, Vsn, "./.", Deps, ReleaseType)),
     io:format("~s", [prettypr:format(Doc)]),
     erlang:halt(0).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
+-spec release_type([string()]) -> release | escript.
+release_type(Args) ->
+    lists:foldl(fun(Arg, Acc) ->
+                        case Arg of
+                            "--escript" -> escript;
+                            _ -> Acc
+                        end
+                end, release, Args).
+
+
 -spec header([string()]) -> prettypr:document().
 header(Args) ->
     ArgsDoc = lists:map(fun prettypr:text/1, Args),
