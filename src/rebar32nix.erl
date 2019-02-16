@@ -15,7 +15,8 @@ main(Args) ->
     Deps = get_deps_list(),
     Vsn = proplists:get_value(vsn, List),
     ReleaseType = release_type(Args),
-    Doc = prettypr:above(header(Args), beam2nix:new(AppName, Vsn, "./.", Deps, ReleaseType)),
+    App = #{name => AppName, vsn => Vsn, src => "./.", deps => Deps, release_type => ReleaseType},
+    Doc = prettypr:above(header(Args), beam2nix:new(App)),
     io:format("~s", [prettypr:format(Doc)]),
     erlang:halt(0).
 
