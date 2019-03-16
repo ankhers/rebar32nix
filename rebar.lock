@@ -1,1 +1,10 @@
-[].
+{"1.1.0",
+[{<<"beam2nix">>,
+  {git,"https://github.com/ankhers/beam2nix.git",
+       {ref,"ae22d164431fa1cf2a8ebc1e34c189b52cec6168"}},
+  0},
+ {<<"getopt">>,{pkg,<<"getopt">>,<<"1.0.1">>},0}]}.
+[
+{pkg_hash,[
+ {<<"getopt">>, <<"C73A9FA687B217F2FF79F68A3B637711BB1936E712B521D8CE466B29CBF7808A">>}]}
+].
